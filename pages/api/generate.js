@@ -14,7 +14,7 @@ export default async function (req, res) {
     });
     return;
   }
-
+  
   const animal = req.body.animal || '';
   if (animal.trim().length === 0) {
     res.status(400).json({
@@ -24,7 +24,7 @@ export default async function (req, res) {
     });
     return;
   }
-
+  
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
@@ -49,8 +49,7 @@ export default async function (req, res) {
 }
 
 function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
+  const capitalizedAnimal = animal[0].toUpperCase() + animal.slice(1).toLowerCase();
   return `Suggest three names for an animal that is a superhero.
 
 Animal: Cat
